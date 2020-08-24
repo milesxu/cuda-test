@@ -37,6 +37,11 @@ set_property(TARGET device_array_test PROPERTY CUDA_SEPARABLE_COMPILATION ON)
 set_property(TARGET device_array_test PROPERTY CUDA_STANDARD 11)
 target_link_libraries(device_array_test ${CUDA_LIB})
 
+add_executable(ballot_sync_test ballot_sync_test.cu)
+set_property(TARGET ballot_sync_test PROPERTY CUDA_SEPARABLE_COMPILATION ON)
+set_property(TARGET ballot_sync_test PROPERTY CUDA_STANDARD 11)
+target_link_libraries(ballot_sync_test ${CUDA_LIB})
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
