@@ -3,7 +3,7 @@
 
 __global__ void ballot_sync_test() {
   auto test = 0;
-  if (threadIdx.x % 3 == 0) {
+  if (threadIdx.x % 7 == 0) {
     test = 1;
   }
   auto result = __ballot_sync(0xffffffff, test);
