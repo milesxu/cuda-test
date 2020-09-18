@@ -7,7 +7,7 @@ int main(int argc, char *argv[]) {
   auto extent = make_cudaExtent(12 * sizeof(float), 23, 23);
   cudaPitchedPtr ptrb;
   cudaMalloc3D(&ptrb, extent);
-  cudaDeviceSynchronize();
+  // cudaDeviceSynchronize();
   std::cout << "ptrb: " << ptrb.ptr << " " << ptrb.pitch << " " << ptrb.xsize
             << " " << ptrb.ysize << std::endl;
   ptra = ptrb;
