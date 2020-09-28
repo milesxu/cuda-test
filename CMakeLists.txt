@@ -55,6 +55,10 @@ add_executable(cuda_symbol_test cuda_symbol_test.cu)
 set_property(TARGET cuda_symbol_test PROPERTY CUDA_ARCHITECTURES 70 75)
 target_link_libraries(cuda_symbol_test ${CUDA_LIB})
 
+add_executable(null_ptr_test null_ptr_test.cu)
+set_property(TARGET null_ptr_test PROPERTY CUDA_ARCHITECTURES 70 75)
+target_link_libraries(null_ptr_test ${CUDA_LIB})
+
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
 include(CPack)
