@@ -10,14 +10,15 @@ int main(int argc, char *argv[]) {
   cudaPitchedPtr pitched_ptr;
   cudaMalloc3D(&pitched_ptr, extent);
   const auto unit_length = pitched_ptr.pitch;
-  std::cout << unit_length << " " << pitched_ptr.xsize << " "
+  std::cout << "Pitched ptr: " << unit_length << " " << pitched_ptr.xsize << " "
             << pitched_ptr.ysize << std::endl;
   cudaFree(pitched_ptr.ptr);
   const auto pitched_length = unit_length * h * d;
   const auto more_length = pitched_length + unit_length;
   int *h_data = new int[more_length];
   auto host_ptr = make_cudaPitchedPtr(h_data, w * sizeof(int), w, h);
-  std::cout << "host pitch: " << host_ptr.pitch << std::endl;
+  std::cout << "host pitch: " << host_ptr.pitch << " " << host_ptr.xsize
+            << std::endl;
   int *d_data;
   cudaMalloc(&d_data, more_length);
   cudaMemset(d_data, 0, more_length);
