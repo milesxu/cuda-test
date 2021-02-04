@@ -14,7 +14,7 @@ public:
   char bb1;
   int a;
   short bb;
-};
+} __attribute((packed)) __;
 
 class A3 {
 public:
