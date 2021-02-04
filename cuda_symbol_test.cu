@@ -2,6 +2,7 @@
 #include <iostream>
 
 __device__ int test[2];
+__constant__ float pi;
 
 int *store[] = {test};
 
@@ -9,11 +10,14 @@ __global__ void assign_test() {
   if (threadIdx.x == 0) {
     test[0] = 23;
     test[1] = 15;
+    printf("%f\n", pi);
   }
 }
 
 int main(int argc, char *argv[]) {
   std::cout << test << std::endl << store[0] << std::endl;
+  const auto h_pi = 2.0f * std::asin(1.0f);
+  cudaMemcpyToSymbolAsync(pi, &h_pi, sizeof(float), 0, cudaMemcpyDefault);
   assign_test<<<1, 1>>>();
   int result[2];
   int *d_r;

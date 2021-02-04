@@ -1,3 +1,4 @@
+#include <cstdint>
 #include <cuda_runtime.h>
 #include <stdio.h>
 
@@ -16,10 +17,19 @@ __global__ void ballot_sync_test() {
   if (threadIdx.x == 0) {
     printf("%d\n", result);
   }
+  test = 0;
+  if (threadIdx.x == 2) {
+    test = 1;
+  }
+  result = __ballot_sync(0xffffffff, test);
+  if (threadIdx.x == 0) {
+    printf("%d\n", result);
+  }
 }
 
 int main(int argc, char *argv[]) {
   ballot_sync_test<<<1, 32>>>();
   cudaDeviceSynchronize();
+  printf("%d\n", static_cast<uint32_t>(0.12348 * 1000000));
   return 0;
 }
