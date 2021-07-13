@@ -1,7 +1,8 @@
 #include <cooperative_groups.h>
 #include <cuda_runtime.h>
-#include <iostream>
 #include <stdio.h>
+
+#include <iostream>
 
 namespace cg = cooperative_groups;
 
@@ -19,6 +20,8 @@ __global__ void cooperative_group_test() {
     printf("group size: %d\n", tile4.size());
     // printf("meta group size: %d\n", tile_warp.meta_group_size());
     // printf("meta group rank: %d\n", tile_warp.meta_group_rank());
+    printf("meta group size: %d\n", tile4.meta_group_size());
+    printf("meta group rank: %d\n", tile4.meta_group_rank());
   }
 }
 
